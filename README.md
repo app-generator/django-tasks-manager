@@ -25,8 +25,8 @@ TEMPLATE_DIR_TASKS = os.path.join(BASE_DIR, "django_tm/templates")     # <-- NEW
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',  # <-- Updated 
-        'DIRS': [TEMPLATE_DIR, TEMPLATE_DIR_TASKS],                  
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',   
+        'DIRS': [TEMPLATE_DIR, TEMPLATE_DIR_TASKS],                    # <-- Updated
         'APP_DIRS': True,
     },
 ]
