@@ -37,6 +37,18 @@ urlpatterns = [
 > 👉 `Update Configuration`: Include the new templates 
 
 ```python
+INSTALLED_APPS = [
+    ...                  
+    'django_tm',              # Django Tasks Manager   # <-- NEW
+    'django_celery_results',  # Django Celery Results  # <-- NEW
+]
+```
+
+<br />
+
+> 👉 `Update Configuration`: Include the new templates 
+
+```python
 TEMPLATE_DIR_TASKS = os.path.join(BASE_DIR, "django_tm/templates")     # <-- NEW
 
 TEMPLATES = [
