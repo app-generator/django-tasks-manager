@@ -7,18 +7,24 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-name='django-admin-material-dashboard',
+name='django-tasks-manager',
 version='0.0.1',
 zip_safe=False,
 packages=find_packages(),
 include_package_data=True,
-description='Modern template for Django admin interface',
+description='Simple Django & celery Integration',
 long_description=README,
 long_description_content_type="text/markdown",
-url='https://github.com/app-generator/django-admin-material-dashboard',
+url='https://github.com/app-generator/django-tasks-manager',
 author='AppSeed.us',
 author_email='support@appseed.us',
 license='MIT License',
+install_requires=[
+  'celery',
+  'redis',
+  'hiredis',
+  'django-celery-results',
+],    
 classifiers=[
     'Intended Audience :: Developers',
     'Intended Audience :: System Administrators',
