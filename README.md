@@ -8,7 +8,7 @@ Just a Simple Django & Celery integration.
 
 <br />
 
-> **Install the package** via `PIP` 
+> 👉 **Install the package** via `PIP` 
 
 ```bash
 $ pip install django-tasks-manager
@@ -18,7 +18,7 @@ $ pip install git+https://github.com/app-generator/django-tasks-manager.git
 
 <br />
 
-> `Update Configuration`: Include the new templates 
+> 👉 `Update Configuration`: Include the new templates 
 
 ```python
 TEMPLATE_DIR_TASKS = os.path.join(BASE_DIR, "django_tm/templates")     # <-- NEW
@@ -34,7 +34,7 @@ TEMPLATES = [
 
 <br />
 
-> `Update Configuration`: New **CELERY_** Section
+> 👉 `Update Configuration`: New **CELERY_** Section
 
 ```python
 
@@ -64,7 +64,7 @@ CELERY_RESULT_SERIALIZER  = 'json'
 
 <br />
 
-> **Start the app**
+> 👉 `Start the App`
 
 ```bash
 $ # Set up the database
@@ -79,6 +79,16 @@ $ python manage.py runserver # default port 8000
 ```
 
 Access the `Tasks` page: `http://127.0.0.1:8000/tasks`
+
+<br />
+
+> 👉 Start the Celery Manager  (another terminal)
+
+> Note: `Redis` server is expected on port `6379` (default)
+
+```bash
+$ celery --app=django_tm.celery.app worker --loglevel=info 
+``` 
 
 <br />
 
