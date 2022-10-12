@@ -1,0 +1,5 @@
+include LICENSE.md
+include README.md
+recursive-include django_tm/static *
+recursive-include django_tm/templates *
+recursive-include docs *
