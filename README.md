@@ -37,8 +37,8 @@ urlpatterns = [
 > 👉 Cretae `Scrips & LOGS` directory - The Recomended place is in the root of the project:
 
 ```bash
-$ mkdir celery_scripts
-$ mkdir celery_logs
+$ mkdir celery_scripts # Used in Settings -> CELERY_SCRIPTS_DIR
+$ mkdir celery_logs    # Used in Settings -> CELERY_SCRIPTS_DIR
 ```
 
 - Make sure the user that executes the app has write permission. 
@@ -83,8 +83,9 @@ TEMPLATES = [
 # Celery configurations
 # https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html
 
-CELERY_SCRIPTS_DIR        = os.path.join(BASE_DIR, "django_tm", "celery_scripts" )
-CELERY_LOGS_DIR           = os.path.join(BASE_DIR, "django_tm", "celery_logs"    )
+# Working Directories required write permission
+CELERY_SCRIPTS_DIR        = os.path.join(BASE_DIR, "celery_scripts" )
+CELERY_LOGS_DIR           = os.path.join(BASE_DIR, "celery_logs"    )
 
 CELERY_BROKER_URL         = os.environ.get("CELERY_BROKER", "redis://localhost:6379")
 CELERY_RESULT_BACKEND     = os.environ.get("CELERY_BROKER", "redis://localhost:6379")

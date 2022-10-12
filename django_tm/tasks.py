@@ -37,7 +37,10 @@ def execute_script(self, data: dict):
     :rtype: None
     """
     script = data.get("input")
-    if script and script in get_scripts():
+
+    scripts, ErrInfo = get_scripts()
+
+    if script and script in scripts:
         # Executing related script
         script_path = os.path.join(settings.CELERY_SCRIPTS_DIR, script)
         process = subprocess.Popen(
