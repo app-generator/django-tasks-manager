@@ -34,7 +34,7 @@ urlpatterns = [
 
 <br />
 
-> 👉 `Update Configuration`: Include the new templates 
+> 👉 `Update Configuration`: Include the new APPS
 
 ```python
 INSTALLED_APPS = [
