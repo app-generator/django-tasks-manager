@@ -18,6 +18,22 @@ $ pip install git+https://github.com/app-generator/django-tasks-manager.git
 
 <br />
 
+> 👉 `Add new routing`
+
+```python
+# core/settings.py
+
+urlpatterns = [
+    ...
+    
+    path("", include("django_tm.urls")),  # <-- New Routes
+
+    ...
+]
+```
+
+<br />
+
 > 👉 `Update Configuration`: Include the new templates 
 
 ```python
