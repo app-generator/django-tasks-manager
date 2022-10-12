@@ -21,14 +21,20 @@
                 Async Tasks Manager
               </h6>
             </div>
-            <div class="card-body px-0 pt-0 pb-2 px-4">
+            <div class="card-body px-0 pt-0 pb-2 px-4 mt-3">
               
-              <p>
-                Superusers are able to create/cancel tasks.
-                <br />
-                Ordinary users can only view execution logs and running tasks (no other interactions allowed).
-              </p>
-
+              {% if scripts %}
+                <p>
+                  Superusers are able to create/cancel tasks.
+                  <br />
+                  Ordinary users can only view execution logs and running tasks (no other interactions allowed).
+                </p>
+              {% else %}
+                <p class="text-danger">
+                  No scripts detected - Please update the configuration (CELERY_SCRIPTS_DIR, CELERY_LOGS_DIR)
+                </p>
+              {% endif %}
+            
             </div>
           </div>
         </div>
@@ -48,7 +54,7 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Script</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Latest Status</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STATE</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                         Input
                       </th>
@@ -64,105 +70,108 @@
 
                     <!-- Running Task -->
                     {% for task in  tasks %}    
+
                     {% if task.status == "STARTED" %}
                     <form action="{% url 'cancel-task' task.id %}" method="post">
                     {% else %}
-                    <form action="{% url 'run-task' task.name %}" method="post">
-                      
+                    <form action="{% url 'run-task' task.name %}" method="post">                      
                     {% endif %}  
 
                     
                       {% csrf_token %}
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div class="mx-3">
-                            <i class="fa fa-file-code-o fa-2x"></i>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div class="mx-3">
+                              <i class="fa fa-file-code-o fa-2x"></i>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                              <h6 class="mb-0 text-sm">
+                                {{task.name}}
+                              </h6>
+                              <p class="text-xs text-secondary mb-0">
+                                Celery Task
+                              </p>
+                            </div>
                           </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">
-                              {{task.name}}
-                            </h6>
-                            <p class="text-xs text-secondary mb-0">
-                              Celery Task
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">
-                          {{ task.script }}
-                        </p>
-                        <div class="text-xs text-secondary mb-0" style="width:200px;height:50px;overflow-x: scroll;">
-                          {{ task.status }}
-                        </div>                          
-                      </td>
-                      <td class="align-middle text-center text-sm">
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">
+                            {{ task.script }}
+                          </p>
+                          <div class="text-xs text-secondary mb-0" style="width:200px;height:50px;overflow-x: scroll;">
+                            Latest status: {{ task.status }}
+                          </div>                          
+                        </td>
+                        <td class="align-middle text-center text-sm">
 
-                        {% if task.status == "STARTED" %}
-                          <span class="badge bg-warning">RUNNING</span>
-                        {% elif task.status == "FAILURE" %}
-                          <span class="badge bg-danger">FINISHED</span>
-                        {% elif task.status == "REVOKED" %}
-                        <span class="badge bg-secondary">CANCELLED</span>
-                        {% else %}
-                          <span class="badge bg-success">FINISHED</span>                          
-                        {% endif %}
-                        
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">
-                          
-                          {% if task.name == 'execute_script' %}
-
-                            <select class="form-control" name="input" 
-                            {% if task.status == "STARTED" %}
-                            disabled
-                            {% endif %}
-                            >
-                              {% for item in scripts %}
-                                <option value="{{item}}" {% if item == task.input %}selected{% endif %}>{{ item }}</option>
-                              {% endfor %}
-                            </select>
-                          
+                          {% if task.status == "STARTED" %}
+                            <span class="badge bg-warning">RUNNING</span>
+                          {% elif task.status == "FAILURE" %}
+                            <span class="badge bg-danger">FINISHED</span>
+                          {% elif task.status == "REVOKED" %}
+                          <span class="badge bg-secondary">CANCELLED</span>
                           {% else %}
-                            NA
+                            <span class="badge bg-success">FINISHED</span>                          
                           {% endif %}
                           
-                        </span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">
-                          {{task.date_created|date_format}}
-                        </span>
-                      </td>
-
-                      {% if request.user.is_superuser %}
-                      <td class="align-middle text-center">
-
-                        {% if task.status == "STARTED" %}
-
-                          <button href="javascript:;" class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                            Cancel Task
-                          </button>
-
-                        {% elif task.status == "FAILURE" or task.status == "REVOKED" %}
+                        </td>
+                        <td class="align-middle text-center">
+                          <span class="text-secondary text-xs font-weight-bold">
                             
-                            <button href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                              Execute
+                            {% if task.name == 'execute_script' %}
+
+                              <select class="form-control" name="input" 
+                              {% if task.status == "STARTED" or not scripts %}
+                                disabled
+                              {% endif %}
+                              >
+                                {% for item in scripts %}
+                                  <option value="{{item}}" {% if item == task.input %}selected{% endif %}>{{ item }}</option>
+                                {% endfor %}
+                              </select>
+                            
+                            {% else %}
+                              NA
+                            {% endif %}
+                            
+                          </span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <span class="text-secondary text-xs font-weight-bold">
+                            {{task.date_created|date_format}}
+                          </span>
+                        </td>
+
+                        {% if request.user.is_superuser %}
+                        <td class="align-middle text-center">
+
+                          {% if task.status == "STARTED" %}
+
+                            <button href="javascript:;" class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                              Cancel Task
                             </button>
 
-                        {% else %}
+                          {% elif task.status == "FAILURE" or task.status == "REVOKED" %}
+                              
+                              <button href="javascript:;" 
+                                      class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                Execute
+                              </button>
 
-                          <button href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                            Execute
-                          </button>
+                          {% else %}                               
+                            
+                              <button href="javascript:;" 
+                                      class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                Execute
+                              </button>
 
+                          {% endif %}
+
+                        </td>
                         {% endif %}
+                      </tr>
 
-                      </td>
-                      {% endif %}
-                    </tr>
                     </form>
                   {% endfor %}
 

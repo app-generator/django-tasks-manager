@@ -22,9 +22,12 @@ from .celery import app
 @login_required(login_url="/login/")
 def tasks(request):
 
-    context = {'segment': 'tasks',
-               'tasks': get_celery_all_tasks(),
-               'scripts': get_scripts()}
+    scripts, ErrInfo = get_scripts()
+ 
+    context = {
+               'cfgError' : ErrInfo,
+               'tasks'    : get_celery_all_tasks(),
+               'scripts'  : scripts}
 
     # django_celery_results_task_result
     task_results = TaskResult.objects.all()
@@ -111,19 +114,25 @@ def task_log(request):
     if not task: 
         return ''
 
-    # Get logs file
-    all_logs = [f for f in listdir(settings.CELERY_LOGS_DIR) if isfile(join(settings.CELERY_LOGS_DIR, f))]
-    
-    for log in all_logs:
+    try: 
 
-        # Task HASH name is saved in the log name
-        if task.task_id in log:
-            
-            with open( os.path.join( settings.CELERY_LOGS_DIR, log) ) as f:
+        # Get logs file
+        all_logs = [f for f in listdir(settings.CELERY_LOGS_DIR) if isfile(join(settings.CELERY_LOGS_DIR, f))]
+        
+        for log in all_logs:
+
+            # Task HASH name is saved in the log name
+            if task.task_id in log:
                 
-                # task_log -> JSON Format
-                task_log = f.readlines() 
+                with open( os.path.join( settings.CELERY_LOGS_DIR, log) ) as f:
+                    
+                    # task_log -> JSON Format
+                    task_log = f.readlines() 
 
-            break    
+                break    
+    
+    except Exception as e:
+
+         task_log = json.dumps( { 'Error CELERY_LOGS_DIR: ' : str( e) } )
 
     return HttpResponse(task_log)

@@ -13,7 +13,11 @@ def get_scripts():
     """
     Returns all scripts from 'ROOT_DIR/celery_scripts'
     """
-    return [f for f in listdir(settings.CELERY_SCRIPTS_DIR) if isfile(join(settings.CELERY_SCRIPTS_DIR, f))]
+    try:
+        scripts = [f for f in listdir(settings.CELERY_SCRIPTS_DIR) if isfile(join(settings.CELERY_SCRIPTS_DIR, f))]
+        return scripts, None 
+    except Exception as e:
+        return None, 'Error CELERY_SCRIPTS_DIR: ' + str( e )    
 
 @app.task(bind=True, base=AbortableTask)
 def users_in_db(self, data: dict):
