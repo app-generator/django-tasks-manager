@@ -1,25 +1,8 @@
-# Django Admin Material Dashboard
+# Django Tasks Manager
 
-Modern template for **Django Admin Interface** coded on top of **[Material Dashboard](https://www.creative-tim.com/product/material-dashboard?AFFILIATE=128200)** (free version). 
-
-> UI Kit: [Material Dashboard](https://github.com/creativetimofficial/material-dashboard) **v3.0.4** designed by `Creative-Tim`
+Just a Simple Django & Celery integration.
 
 <br />
-
-![Django Admin Material Dashboard - Edit users page.](https://user-images.githubusercontent.com/51070104/192813418-8738c303-b550-4e2c-bb8d-281376504cf4.jpg)
-
-<br />
-
-## Why Django Material Dashboard?
-
-- Bootstrap 5 Design (Free version) provided by **Creative-Tim**
-- New fresh look
-- Responsive mobile interface
-- Useful admin home page
-- Minimal template overriding
-- Easy integration
-
-<br>
 
 ## How to use it
 
@@ -28,29 +11,55 @@ Modern template for **Django Admin Interface** coded on top of **[Material Dashb
 > **Install the package** via `PIP` 
 
 ```bash
-$ pip install django-admin-material-dashboard
+$ pip install django-tasks-manager
 // OR
-$ pip install git+https://github.com/app-generator/django-admin-material-dashboard.git
+$ pip install git+https://github.com/app-generator/django-tasks-manager.git
 ```
 
 <br />
 
-> Add `admin_soft` application to the `INSTALLED_APPS` setting of your Django project `settings.py` file (note it should be before `django.contrib.admin`):
+> `Update Configuration`: Include the new templates 
 
 ```python
-    INSTALLED_APPS = (
-        ...
-        'admin_material.apps.AdminMaterialDashboardConfig',
-        'django.contrib.admin',
-    )
+TEMPLATE_DIR_TASKS = os.path.join(BASE_DIR, "django_tm/templates")     # <-- NEW
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',  # <-- Updated 
+        'DIRS': [TEMPLATE_DIR, TEMPLATE_DIR_TASKS],                  
+        'APP_DIRS': True,
+    },
+]
 ```
 
 <br />
 
-> **Collect static** if you are in `production environment`:
+> `Update Configuration`: New **CELERY_** Section
 
-```bash
-$ python manage.py collectstatic
+```python
+
+#############################################################
+# Celery configurations
+# https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html
+
+CELERY_SCRIPTS_DIR        = os.path.join(BASE_DIR, "django_tm", "celery_scripts" )
+CELERY_LOGS_DIR           = os.path.join(BASE_DIR, "django_tm", "celery_logs"    )
+
+CELERY_BROKER_URL         = os.environ.get("CELERY_BROKER", "redis://localhost:6379")
+CELERY_RESULT_BACKEND     = os.environ.get("CELERY_BROKER", "redis://localhost:6379")
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT    = 30 * 60
+CELERY_CACHE_BACKEND      = "django-cache"
+CELERY_RESULT_BACKEND     = "django-db"
+CELERY_RESULT_EXTENDED    = True
+CELERY_RESULT_EXPIRES     = 60*60*24*30 # Results expire after 1 month
+CELERY_ACCEPT_CONTENT     = ["json"]
+CELERY_TASK_SERIALIZER    = 'json'
+CELERY_RESULT_SERIALIZER  = 'json'
+
+#############################################################
+#############################################################
+
 ```
 
 <br />
@@ -69,17 +78,15 @@ $ # Start the application (development mode)
 $ python manage.py runserver # default port 8000
 ```
 
-Access the `admin` section in the browser: `http://127.0.0.1:8000/`
+Access the `Tasks` page: `http://127.0.0.1:8000/tasks`
 
 <br />
 
 ## Screenshots
 
-![Django Admin Material Dashboard - Admin dashboard page.](https://user-images.githubusercontent.com/51070104/192813541-14f0eb32-fdbf-415b-ad67-07364784a133.jpg)
+@Todo
 
 <br />
 
-![Django Admin Material Dashboard - New User Page.](https://user-images.githubusercontent.com/51070104/192813655-8772ae21-b707-42a4-b2ba-15d648bf2768.jpg) 
-
 ---
-**Django Admin Material Dashboard** - Open-source Admin THEME provided by **[AppSeed](https://appseed.us/)**
+Django Tasks Manager - Open-source library provided by **[AppSeed](https://appseed.us/)**
