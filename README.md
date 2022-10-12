@@ -34,6 +34,19 @@ urlpatterns = [
 
 <br />
 
+> 👉 Cretae `Scrips & LOGS` directory - The Recomended place is in the root of the project:
+
+```bash
+$ mkdir celery_scripts
+$ mkdir celery_logs
+```
+
+- Make sure the user that executes the app has write permission. 
+- Copy the [sample scripts](./django_tm/celery_scripts) in the scripts directory. 
+- All scripts will be available in the UI, ready to be executed by the manager. 
+
+<br />
+
 > 👉 `Update Configuration`: Include the new APPS
 
 ```python
