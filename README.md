@@ -15,7 +15,7 @@ A super simple **Django & Celery** integration - This library is actively suppor
     
 <br />    
 
-> Something is not yet provided? [Open a PR](https://github.com/app-generator/django-tasks-manager/issues) on the repository orcontribute via a `fork`.
+> Something is not yet provided? [Open a PR](https://github.com/app-generator/django-tasks-manager/issues) on the repository or contribute via a `fork`.
 
 <br />
 
