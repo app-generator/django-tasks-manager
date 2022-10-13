@@ -1,4 +1,4 @@
-# Django Tasks Manager
+# [Django Tasks Manager](https://github.com/app-generator/django-tasks-manager)
 
 A super simple **Django & Celery** integration - This library is actively supported by [AppSeed](https://appseed.us/).
 
@@ -177,4 +177,4 @@ $ celery --app=django_tm.celery.app worker --loglevel=info
 <br />
 
 ---
-Django Tasks Manager - Open-source library provided by **[AppSeed](https://appseed.us/)**
+[Django Tasks Manager](https://github.com/app-generator/django-tasks-manager) - Open-source library provided by **[AppSeed](https://appseed.us/)**
