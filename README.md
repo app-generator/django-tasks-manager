@@ -18,7 +18,7 @@ $ pip install git+https://github.com/app-generator/django-tasks-manager.git
 
 <br />
 
-> `Include the new routing`
+> **Include the new routing**
 
 ```python
 # core/urls.py
@@ -36,7 +36,7 @@ urlpatterns = [
 
 <br />
 
-> Create `Scrips & LOGS` directories - The Recomended place is in the root of the project:
+> Create **Scrips & LOGS** directories - The Recomended place is in the root of the project:
 
 ```bash
 $ mkdir celery_scripts # Used in Settings -> CELERY_SCRIPTS_DIR
@@ -49,7 +49,7 @@ $ mkdir celery_logs    # Used in Settings -> CELERY_SCRIPTS_DIR
 
 <br />
 
-> `Update Configuration`: Include the new APPS
+> **Update Configuration**: Include the new APPS
 
 ```python
 INSTALLED_APPS = [
@@ -61,7 +61,7 @@ INSTALLED_APPS = [
 
 <br />
 
-> `Update Configuration`: Include the new templates 
+> **Update Configuration**: Include the new templates 
 
 ```python
 TEMPLATE_DIR_TASKS = os.path.join(BASE_DIR, "django_tm/templates")     # <-- NEW
@@ -77,14 +77,13 @@ TEMPLATES = [
 
 <br />
 
-> `Update Configuration`: New **CELERY_** Section
+> **Update Configuration**: New **CELERY_** Section
 
 ```python
 
 #############################################################
 # Celery configurations
 # https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html
-
 
 # BASE_DIR points to the ROOT of the project
 # Note: make sure you have 'os' object imported
@@ -114,7 +113,7 @@ CELERY_RESULT_SERIALIZER  = 'json'
 
 <br />
 
-> `Start the App`
+> **Start the App** 
 
 ```bash
 $ # Set up the database
@@ -132,13 +131,33 @@ Access the `Tasks` page: `http://127.0.0.1:8000/tasks`
 
 <br />
 
-> Start the Celery Manager (another terminal)
+> **Start the Celery Manager** (another terminal)
 
-> Note: `Redis` server is expected on port `6379` (default). In case Redis runs on other `PORT`, please update the configuration: `CELERY_BROKER_URL` and `CELERY_RESULT_BACKEND`.
+**Note**: `Redis` server is expected on port `6379` (default). In case Redis runs on other `PORT`, please update the configuration: `CELERY_BROKER_URL` and `CELERY_RESULT_BACKEND`.
 
 ```bash
 $ celery --app=django_tm.celery.app worker --loglevel=info 
 ``` 
+
+<br />
+
+## Screens
+
+> `View all tasks`
+
+![Django Tasks Manager - View All Tasks.](https://user-images.githubusercontent.com/51070104/195669853-677e887e-f8b2-4b56-bcf3-f81d98b175b0.jpg)
+
+<br />
+
+> `View Task LOG`
+
+![Django Tasks Manager - View Task LOG.](https://user-images.githubusercontent.com/51070104/195669981-c64e3d13-1d83-496a-b527-cade9cda2cd2.jpg)
+
+<br />
+
+> `View Running Tasks`
+
+![Django Tasks Manager - View Running Tasks.](https://user-images.githubusercontent.com/51070104/195670211-a24f7d72-37c1-48fc-a842-ab45b4559ca0.jpg)
 
 <br />
 
