@@ -1,6 +1,6 @@
 # Django Tasks Manager
 
-A super simple Django & Celery integration - The product is actively supported by [AppSeed](https://appseed.us/).
+A super simple **Django & Celery** integration - This library is actively supported by [AppSeed](https://appseed.us/).
 
 > Features: 
 
@@ -15,7 +15,7 @@ A super simple Django & Celery integration - The product is actively supported b
     
 <br />    
 
-> Something is not yet provided? [Open a PR](https://github.com/app-generator/django-tasks-manager/issues) on the repository. 
+> Something is not yet provided? [Open a PR](https://github.com/app-generator/django-tasks-manager/issues) on the repository orcontribute via a `fork`.
 
 <br />
 
