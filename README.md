@@ -8,7 +8,7 @@ Just a Simple Django & Celery integration.
 
 <br />
 
-> 👉 **Install the package** via `PIP` 
+> **Install the package** via `PIP` 
 
 ```bash
 $ pip install django-tasks-manager
@@ -18,7 +18,7 @@ $ pip install git+https://github.com/app-generator/django-tasks-manager.git
 
 <br />
 
-> 👉 `Add new routing`
+> `Add new routing`
 
 ```python
 # core/settings.py
@@ -34,7 +34,7 @@ urlpatterns = [
 
 <br />
 
-> 👉 Cretae `Scrips & LOGS` directory - The Recomended place is in the root of the project:
+> Create `Scrips & LOGS` directories - The Recomended place is in the root of the project:
 
 ```bash
 $ mkdir celery_scripts # Used in Settings -> CELERY_SCRIPTS_DIR
@@ -47,7 +47,7 @@ $ mkdir celery_logs    # Used in Settings -> CELERY_SCRIPTS_DIR
 
 <br />
 
-> 👉 `Update Configuration`: Include the new APPS
+> `Update Configuration`: Include the new APPS
 
 ```python
 INSTALLED_APPS = [
@@ -59,7 +59,7 @@ INSTALLED_APPS = [
 
 <br />
 
-> 👉 `Update Configuration`: Include the new templates 
+> `Update Configuration`: Include the new templates 
 
 ```python
 TEMPLATE_DIR_TASKS = os.path.join(BASE_DIR, "django_tm/templates")     # <-- NEW
@@ -75,7 +75,7 @@ TEMPLATES = [
 
 <br />
 
-> 👉 `Update Configuration`: New **CELERY_** Section
+> `Update Configuration`: New **CELERY_** Section
 
 ```python
 
@@ -89,6 +89,7 @@ CELERY_LOGS_DIR           = os.path.join(BASE_DIR, "celery_logs"    )
 
 CELERY_BROKER_URL         = os.environ.get("CELERY_BROKER", "redis://localhost:6379")
 CELERY_RESULT_BACKEND     = os.environ.get("CELERY_BROKER", "redis://localhost:6379")
+
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT    = 30 * 60
 CELERY_CACHE_BACKEND      = "django-cache"
@@ -106,7 +107,7 @@ CELERY_RESULT_SERIALIZER  = 'json'
 
 <br />
 
-> 👉 `Start the App`
+> `Start the App`
 
 ```bash
 $ # Set up the database
@@ -124,19 +125,13 @@ Access the `Tasks` page: `http://127.0.0.1:8000/tasks`
 
 <br />
 
-> 👉 Start the Celery Manager  (another terminal)
+> Start the Celery Manager (another terminal)
 
-> Note: `Redis` server is expected on port `6379` (default)
+> Note: `Redis` server is expected on port `6379` (default). In case Redis runs on other `PORT`, please update the configuration: `CELERY_BROKER_URL` and `CELERY_RESULT_BACKEND`.
 
 ```bash
 $ celery --app=django_tm.celery.app worker --loglevel=info 
 ``` 
-
-<br />
-
-## Screenshots
-
-@Todo
 
 <br />
 
