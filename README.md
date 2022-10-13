@@ -1,6 +1,21 @@
 # Django Tasks Manager
 
-Just a Simple Django & Celery integration.
+A super simple Django & Celery integration - The product is actively supported by [AppSeed](https://appseed.us/).
+
+> Features: 
+
+- Create/Revoke Celery Tasks
+- View LOGS & Output
+- Minimal Configuration
+- Installation via PyPi
+- Available [TASKS](https://github.com/app-generator/django-tasks-manager/blob/main/django_tm/tasks.py) (provided as starting samples)
+  - `users_in_db()` - List all registered users
+  - `execute_script()` - let users execute the [scripts](https://github.com/app-generator/django-tasks-manager/tree/main/django_tm/celery_scripts) defined in `CELERY_SCRIPTS_DIR` (configuration parameter)
+    - [check-db-health.py](https://github.com/app-generator/django-tasks-manager/blob/main/django_tm/celery_scripts/check-db-health.py) (sample)    
+    
+<br />    
+
+> Something is not yet provided? [Open a PR](https://github.com/app-generator/django-tasks-manager/issues) on the repository. 
 
 <br />
 
