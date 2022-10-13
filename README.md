@@ -18,10 +18,12 @@ $ pip install git+https://github.com/app-generator/django-tasks-manager.git
 
 <br />
 
-> `Add new routing`
+> `Include the new routing`
 
 ```python
-# core/settings.py
+# core/urls.py
+
+from django.urls import path, include     # <-- UPDATE: Add 'include' HELPER
 
 urlpatterns = [
     ...
@@ -82,6 +84,11 @@ TEMPLATES = [
 #############################################################
 # Celery configurations
 # https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html
+
+
+# BASE_DIR points to the ROOT of the project
+# Note: make sure you have 'os' object imported
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Working Directories required write permission
 CELERY_SCRIPTS_DIR        = os.path.join(BASE_DIR, "celery_scripts" )
