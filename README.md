@@ -7,10 +7,10 @@ A super simple **Django & Celery** integration - This library is actively suppor
 - [Installation via PIP](https://pypi.org/project/django-tasks-manager/)
 - Create/Revoke `Celery Tasks`
 - `View LOGS` & Output
-- Minimal Configuration
+- `Minimal Configuration`
 - Available [TASKS](https://github.com/app-generator/django-tasks-manager/blob/main/django_tm/tasks.py) (provided as starting samples)
   - `users_in_db()` - List all registered users
-  - `execute_script()` - let users execute the [scripts](https://github.com/app-generator/django-tasks-manager/tree/main/django_tm/celery_scripts) defined in `CELERY_SCRIPTS_DIR` (configuration parameter)
+  - `execute_script()` - let users execute the [scripts](https://github.com/app-generator/django-tasks-manager/tree/main/django_tm/celery_scripts) defined in `CELERY_SCRIPTS_DIR` (CFG parameter)
     - [check-db-health.py](https://github.com/app-generator/django-tasks-manager/blob/main/django_tm/celery_scripts/check-db-health.py) (sample)    
     
 <br />    
