@@ -5,7 +5,7 @@
 
 - Update `DOCS`
 - Added sample project (step-by-step info)
-  - [Django Tasks Manager Sample])(https://github.com/app-generator/sample-django-tasks-manager)
+  - [Django Tasks Manager Sample](https://github.com/app-generator/sample-django-tasks-manager)
 
 ## [0.0.4] 2022-10-13
 ### Improvements
