@@ -15,7 +15,7 @@ A super simple **Django & Celery** integration - This library is actively suppor
     
 <br />    
 
-> Something is not yet provided? [Open a PR](https://github.com/app-generator/django-tasks-manager/issues) on the repository or contribute via a `fork`.
+![Django Tasks Manager - View Running Tasks.](https://user-images.githubusercontent.com/51070104/195670211-a24f7d72-37c1-48fc-a842-ab45b4559ca0.jpg)
 
 <br />
 
@@ -168,17 +168,11 @@ $ celery --app=django_tm.celery.app worker --loglevel=info
 
 ![Django Tasks Manager - View Task LOG.](https://user-images.githubusercontent.com/51070104/195669981-c64e3d13-1d83-496a-b527-cade9cda2cd2.jpg)
 
-<br />
-
-> `View Running Tasks`
-
-![Django Tasks Manager - View Running Tasks.](https://user-images.githubusercontent.com/51070104/195670211-a24f7d72-37c1-48fc-a842-ab45b4559ca0.jpg)
-
-<br />
+<br /> 
 
 ## Links & Resources
 
-- Free [Support](https://appseed.us/support/) provided by AppSeed
+- Free [Support](https://appseed.us/support/) via Email and Discord
 - [Django Tasks Manager](https://github.com/app-generator/sample-django-tasks-manager) - `free sample` that explains:
   - `Project Creation` (minimal files added)
   - `Install` & Generate `Django` Core
