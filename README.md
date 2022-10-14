@@ -176,5 +176,18 @@ $ celery --app=django_tm.celery.app worker --loglevel=info
 
 <br />
 
+## Links & Resources
+
+- Free [Support](https://appseed.us/support/) provided by AppSeed
+- [Django Tasks Manager](https://github.com/app-generator/sample-django-tasks-manager) - `free sample` that explains:
+  - `Project Creation` (minimal files added)
+  - `Install` & Generate `Django` Core
+  - Install `Django-TM` (this package)
+  - `Update Configuration`
+  - `Start the app`
+  - Use the `Tasks Manager`
+
+<br />
+
 ---
 [Django Tasks Manager](https://github.com/app-generator/django-tasks-manager) - Open-source library provided by **[AppSeed](https://appseed.us/)**
