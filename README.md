@@ -2,9 +2,10 @@
 
 A super simple **Django & Celery** integration - This library is actively supported by [AppSeed](https://appseed.us/).
 
+<br />
+
 > Features: 
 
-- [Installation via PIP](https://pypi.org/project/django-tasks-manager/)
 - Create/Revoke `Celery Tasks`
 - `View LOGS` & Output
 - `Minimal Configuration`
