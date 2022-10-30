@@ -1,9 +1,14 @@
+# -*- encoding: utf-8 -*-
+"""
+Copyright (c) 2019 - present AppSeed.us
+"""
+
+import os, json
+
 from django_celery_results.models import TaskResult
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.conf import settings
-import os
-import json
 
 
 @receiver(pre_save, sender=TaskResult)

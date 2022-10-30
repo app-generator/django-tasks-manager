@@ -1,8 +1,13 @@
-from django import template
+# -*- encoding: utf-8 -*-
+"""
+Copyright (c) 2019 - present AppSeed.us
+"""
+
 import json
 
-register = template.Library()
+from django import template
 
+register = template.Library()
 
 def date_format(date):
     """
@@ -17,9 +22,7 @@ def date_format(date):
     except:
         return date
 
-
 register.filter("date_format", date_format)
-
 
 def get_result_field(result, field: str):
     """
@@ -32,6 +35,5 @@ def get_result_field(result, field: str):
     result = json.loads(result.result)
     if result:
         return result.get(field)
-
 
 register.filter("get_result_field", get_result_field)

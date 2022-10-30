@@ -1,13 +1,17 @@
+# -*- encoding: utf-8 -*-
+"""
+Copyright (c) 2019 - present AppSeed.us
+"""
 
-import os
-from .celery import app
-from celery.contrib.abortable import AbortableTask
-import subprocess
-from django.contrib.auth.models import User
-import time
-from django.conf import settings
+import os, time, subprocess
 from os import listdir
 from os.path import isfile, join
+
+from .celery import app
+from celery.contrib.abortable import AbortableTask
+
+from django.contrib.auth.models import User
+from django.conf import settings
 
 def get_scripts():
     """
