@@ -64,6 +64,14 @@ $ mkdir celery_logs    # Used in Settings -> CELERY_SCRIPTS_DIR
 
 <br />
 
+> **Update Configuration** Add `os` object import
+
+```python
+import os # <-- NEW
+```
+
+<br />
+
 > **Update Configuration**: Include the new APPS
 
 ```python
@@ -100,9 +108,14 @@ TEMPLATES = [
 # Celery configurations
 # https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html
 
+# !!!
 # BASE_DIR points to the ROOT of the project
 # Note: make sure you have 'os' object imported
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+# !!!
+
+# !!!
+# BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+# !!! 
 
 # Working Directories required write permission
 CELERY_SCRIPTS_DIR        = os.path.join(BASE_DIR, "celery_scripts" )
@@ -128,6 +141,7 @@ CELERY_RESULT_SERIALIZER  = 'json'
 
 <br />
 
+
 > **Start the App** 
 
 ```bash
@@ -142,11 +156,34 @@ $ # Start the application (development mode)
 $ python manage.py runserver # default port 8000
 ```
 
-Access the `Tasks` page: `http://127.0.0.1:8000/tasks`
+- **Authenticate** as `superuser` 
+- Access the `Tasks` page: `http://127.0.0.1:8000/tasks`
 
 <br />
 
-> **Start the Celery Manager** (another terminal)
+> **Start the Celery Manager** (another terminal) & **Update Environment** 
+
+Export `DJANGO_SETTINGS_MODULE` using the value provided in `manage.py`
+
+```bash
+$ export DJANGO_SETTINGS_MODULE=cfg.settings  
+```
+
+The value used export should be taken from `manage.py`:
+
+```python
+def main():
+    
+    """Run administrative tasks."""
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cfg.settings")  # <-- VALUE to be exported
+
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        ...
+```
+
+<br />
 
 **Note**: `Redis` server is expected on port `6379` (default). In case Redis runs on other `PORT`, please update the configuration: `CELERY_BROKER_URL` and `CELERY_RESULT_BACKEND`.
 

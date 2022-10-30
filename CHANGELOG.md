@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.0.0] 2022-10-30
+### Improvements
+
+- STABLE_VERSION
+
 ## [0.0.6] 2022-10-30
 ### Improvements
 
